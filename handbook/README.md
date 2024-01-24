@@ -46,3 +46,9 @@
 22.   [Ch 22 - Vimrc](./ch22_vimrc.md)
 23.   [Ch 23 - Vim软件包](./ch23_vim_packages.md)
 24.   [Ch 24 - Vim Runtime](./ch24_vim_runtime.md)
+
+## License
+
+以上材料全部归 *©2020 Igor Irianto* 所有，
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a> 该作品的 **英文原版** 已获得 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">「知识共享署名-非商业性-相同方式共享 4.0 版 」</a> 的许可
