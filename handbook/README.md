@@ -1,6 +1,10 @@
 # Learn Vim
 
->   学习如何获得腱鞘炎
+>   *Learn Vim(Smart Way)*，译作 *学习 Vim（智能方式）*，这是一本学习 Vim 中优秀部分知识的书
+
+有很多种方法可以去学习 Vim：`vimtutor` 就是一个很棒的教程，另外还有 `help` 拥有您所想的所有参考信息。但是在日常使用中，对于绝大部分用户的需求而言，`vimtutor` 讲得太浅不能满足需要，而 `:help` 所提供的信息又有很多是用不上的。本指南尝试在两者之间搭一座桥，仅重点介绍关键功能，使您尽可能在最短的时间内掌握 Vim 中最有用的知识。
+
+本指南同时为初学者和高级 Vim 用户撰写。它从宽泛而简单的概念开始讲，最后落在特殊的、进阶的技巧上。如果您已经是一名进阶用户，我还是鼓励您从头到尾阅读本指南，因为您将了解到一些新的东西。
 
 -   英文原版仓库，[iggredible/Learn-Vim](https://github.com/iggredible/Learn-Vim.git)
 -   中文版仓库，[github](https://github.com/wsdjeg/Learn-Vim_zh_cn.git)，[gitlab](https://gitlab.com/wsdjeg/Learn-Vim_zh_cn.git)，中文版本基于英文原版 2021-10-15 更新进行翻译
