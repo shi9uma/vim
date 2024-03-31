@@ -1,6 +1,6 @@
-[submodule "submodule/ma6174"]
-	path = submodule/ma6174
-	url = https://github.com/ma6174/vim.git
 [submodule "submodule/vim-src"]
 	path = submodule/vim-src
 	url = https://github.com/vim/vim.git
+[submodule "submodule/ma6174"]
+	path = submodule/ma6174
+	url = https://github.com/ma6174/vim.git
