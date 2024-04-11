@@ -1,0 +1,20 @@
+" Vim with all enhancements
+source $VIMRUNTIME/vimrc_example.vim
+
+" 01. 配置基础路径
+" 修改 windows 下备份、撤销、临时文件的目录
+set backupdir=E:/toolkit/vim/tmp
+set undodir=E:/toolkit/vim/tmp
+set directory=E:/toolkit/vim/tmp
+
+let $configs_dir = "E:/toolkit/vim/configs"
+let $vim_base_dir = "E:/toolkit/vim"
+let $vim_runtime_dir = "E:/toolkit/vim/vim90"
+
+let $VIM = $vim_base_dir
+let $HOME = $configs_dir
+let $VIMRUNTIME = $vim_runtime_dir
+
+" 02. 基础配置
+behave mswin
+set encoding=UTF-8
