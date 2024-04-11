@@ -4,7 +4,7 @@
 
 1.   获取 [vim](https://www.vim.org/download.php) 的 portable 文件，解压到 `E:/toolkit/vim` 目录下备用，后文给出项目具体目录拓扑
 
-2.   将 vim、ctags、asyle 的 binary 路径添加到 powershell 的配置文件 `$profile` 中，参考如下：
+2.   将 vim 的 binary 路径添加到 powershell 的配置文件 `$profile` 中，参考如下：
 
      ```powershell
      $VIMPATH = "E:/toolkit/vim/vim90"
@@ -82,3 +82,7 @@ E:/
         `-- vimrc
 ```
 
+## references
+
+1.   [A basic .vimrc file that will serve as a good template on which to build.](https://gist.github.com/simonista/8703722)
+2.   
