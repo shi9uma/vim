@@ -1,6 +1,8 @@
 # diy
 
-在 windows powershell in terminal 下 portable 使用 vim 为目的，并集成以下插件
+在 windows powershell in terminal 下 portable 使用 vim、gvim 为目的，并集成插件
+
+## main
 
 1.   获取 [vim](https://www.vim.org/download.php) 的 portable 文件，解压到 `E:/toolkit/vim` 目录下备用，后文给出项目具体目录拓扑
 
@@ -57,10 +59,8 @@
 
 4.   顺便修改一下 git 默认的 vim 路径，否则又跑去 `$HOME` 生成文件了：`$env:GIT_EDITOR = "E:/toolkit/vim/vim90/vim.exe"`
 
-5.   安装配置文件
+5.   安装配置文件：`curl -o ~/.vimrc https://raw.githubusercontent.com/shi9uma/vim/main/diy/vimrc`
 
-     1.   `cd E:/tmp`，`git clone https://github.com/shi9uma/vim.git vim`
-     2.   `cp vim/diy/vimrc E:/toolkit/vim/vimrc`
 
 
 以上操作的目录拓扑如下：
@@ -81,6 +81,37 @@ E:/
         |   `-- ...
         `-- vimrc
 ```
+
+## extra
+
+以下目录适用于 windows 下的 `E:/toolkit/vim/vim90`，unix 下修改成 `~/.vim`，然后改成 `curl -fLo path/to/save --create-dirs url`
+
+1.   配色，参考于 [morhetz/gruvbox](https://github.com/morhetz/gruvbox.git)
+
+     1.   `curl -o E:/toolkit/vim/vim90/colors/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+     2.   `curl -o E:/toolkit/vim/vim90/autoload/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+     3.   `curl -o E:/toolkit/vim/vim90/autoload/airline/themes/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim`
+     4.   `curl -o E:/toolkit/vim/vim90/autoload/lightline/colorscheme/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim`
+
+2.   vim 插件管理，[junegunn/vim-plug](https://github.com/junegunn/vim-plug.git)：`curl -o E:/toolkit/vim/vim90/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`，然后打开将以下基本语句写入到 `E:/toolkit/vim/_vimrc` 末尾：
+
+     ```bash
+     " 开始声明
+     call plug#begin('E:/toolkit/vim/plugins/')	" 指定插件安装目录
+     
+     " 开始获取插件
+     Plug 'junegunn/fzf.vim', {'dir': 'E:/toolkit/vim/plugins/fzf', 'do': { -> fzf#install() }}
+     
+     " 结束声明
+     call plug#end()
+     ```
+
+     要安装插件：`vim -c PlugInstall`
+
+3.   安装以下插件：
+
+     1.   文本搜索，[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)：`Plug 'junegunn/fzf.vim', {'dir': 'E:/toolkit/vim/plugins/fzf', 'do': { -> fzf#install() }}`
+     2.   
 
 ## references
 

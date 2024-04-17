@@ -2,6 +2,7 @@
 
 -   doc
     -   知识储备：[Learn-Vim（the Smart Way）中文翻译](./tutorials/README.md)
+    -   [vim vim-plug 插件安装及使用](https://www.cnblogs.com/zhaodehua/articles/15108744.html)
 -   vim 配置
     -   配置文件参看：[diy](./diy/readme.md)
     -   第三方 vim 配置参考：[ma6174/vim](https://github.com/ma6174/vim.git)，unix only

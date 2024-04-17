@@ -94,3 +94,8 @@ colorscheme gruvbox
 
 " TODO: Pick a leader key
 " let mapleader = ","
+
+" 03. plugins
+call plug#begin('E:/toolkit/vim/plugins')
+Plug 'junegunn/fzf.vim', {'dir': 'E:/toolkit/vim/plugins/fzf', 'do': { -> fzf#install() }}
+call plug#end()
