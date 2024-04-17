@@ -16,7 +16,11 @@ let $HOME = $configs_dir
 let $VIMRUNTIME = $vim_runtime_dir
 
 " 02. 基础配置
+set shortmess=atI	" 启动不显示乌干达那个
 behave mswin
+winpos 50 50	" 启动位置
+set lines=40 columns=210	" 启动大小
+
 set encoding=UTF-8	" Encoding
 set nocompatible	" Don't try to be vi compatible
 filetype off	" Helps force plugins to load correctly when it is turned back on below
@@ -27,10 +31,11 @@ set modelines=0	" Security
 set number	" Show line numbers
 set ruler	" Show file stats
 " set visualbell	" a1 高闪
+set guicursor=a:hor50-Cursor/lCursor
 
 " Whitespace
 set wrap
-set textwidth=79
+set textwidth=1000
 set formatoptions=tcqrn1
 set tabstop=2
 set shiftwidth=2
@@ -85,7 +90,7 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
-colorscheme evening
+colorscheme gruvbox
 
 " TODO: Pick a leader key
 " let mapleader = ","
