@@ -88,30 +88,56 @@ E:/
 
 1.   配色，参考于 [morhetz/gruvbox](https://github.com/morhetz/gruvbox.git)
 
-     1.   `curl -o E:/toolkit/vim/vim90/colors/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
-     2.   `curl -o E:/toolkit/vim/vim90/autoload/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
-     3.   `curl -o E:/toolkit/vim/vim90/autoload/airline/themes/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim`
-     4.   `curl -o E:/toolkit/vim/vim90/autoload/lightline/colorscheme/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim`
+     1.   windows
+          1.   `curl -o E:/toolkit/vim/vim90/colors/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+          2.   `curl -o E:/toolkit/vim/vim90/autoload/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+          3.   `curl -o E:/toolkit/vim/vim90/autoload/airline/themes/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim`
+          4.   `curl -o E:/toolkit/vim/vim90/autoload/lightline/colorscheme/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim`
+     2.   unix
+          1.   `curl -fLo ~/.vim/colors/gruvbox.vim --create-dirs https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+          2.   `curl -fLo ~/.vim/autoload/gruvbox.vim --create-dirs https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+          3.   `curl -fLo ~/.vim/autoload/airline/themes/gruvbox.vim --create-dirs https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim`
+          4.   `curl -fLo ~/.vim/autoload/lightline/colorscheme/gruvbox.vim --create-dirs https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim`
 
-2.   vim 插件管理，[junegunn/vim-plug](https://github.com/junegunn/vim-plug.git)：`curl -o E:/toolkit/vim/vim90/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`，然后打开将以下基本语句写入到 `E:/toolkit/vim/_vimrc` 末尾：
+2.   vim 插件管理，[junegunn/vim-plug](https://github.com/junegunn/vim-plug.git)：`curl -o E:/toolkit/vim/vim90/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`，然后打开将以下基本语句写入到 `E:/toolkit/vim/vimrc` 末尾（参考）：
 
      ```bash
      " 开始声明
      call plug#begin('E:/toolkit/vim/plugins/')	" 指定插件安装目录
      
      " 开始获取插件
-     Plug 'junegunn/fzf.vim', {'dir': 'E:/toolkit/vim/plugins/fzf', 'do': { -> fzf#install() }}
+     Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
      
      " 结束声明
      call plug#end()
      ```
 
-     要安装插件：`vim -c PlugInstall`
+     安装插件：`vim -c PlugInstall`
 
 3.   安装以下插件：
 
-     1.   文本搜索，[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)：`Plug 'junegunn/fzf.vim', {'dir': 'E:/toolkit/vim/plugins/fzf', 'do': { -> fzf#install() }}`
-     2.   
+     1.   vim 命令增强，模糊查找器，通过输入模糊的关键词就可以定位文件或文件夹，[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)，获取其 binary 文件放到 `E:/toolkit/fzf` 下
+     2.   类 grep 工具，[BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep.git)，但不是插件，在 unix 下可以通过包管理器简易安装，在 windows 下通过 binary portable 使用，在 [release](https://github.com/BurntSushi/ripgrep/releases) 获取对应版本的 binary 文件，放到 `E:/toolkit/ripgrep` 文件夹，输入 `rg -h` 可以看到回显
+
+     相关的 `$profile` 应该这么写：
+
+     ```powershell
+     $FZFPATH = "E:/toolkit/fzf"
+     $RIPGREPPATH = "E:/toolkit/ripgrep"
+     
+     $env:PATH += ";$FZFPATH;$RIPGREPPATH"
+     $env:FZF_DEFAULT_COMMAND = "rg --files"
+     $env:FZF_DEFAULT_OPTS = "-m --height 40% --reverse --border --ansi"
+     ```
+
+     `E:/toolkit/vim/vimrc` 插件相关这么写：
+
+     ```bash
+     call plug#begin('E:/toolkit/vim/plugins')
+     Plug 'junegunn/fzf.vim'	" 这个是联动 vim 和 fzf 的插件
+     Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+     call plug#end()
+     ```
 
 ## references
 

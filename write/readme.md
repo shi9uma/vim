@@ -1,6 +1,4 @@
 # learn vim
----
-
 ### chapter 0
 1. `:h :help cmd` 查看具体命令，特别的如果想查看 insert 状态下某个命令，应该是 `:h i_cmd`
 2. `:w` 直接保存，但是 `:w :write new_file_name.txt` 会将其另存为
@@ -25,4 +23,85 @@
 15. `:find` 指令主要用于根据 `:set path?` 所返回的路径进行查找，一般来说会引入特定的环境变量，例如引入 **/usr/include** 可以查找 c 编译器头文件目录，则执行 `:find filename` 后可以在这些目录下进行查找；添加新的 path 可以按照这个方法：`:set path+=/path/want/to/add`，在进行一些大的项目开发时，可以按照 `:set path+=$PWD/**` 的方法将整个项目的路径引入，这样在 find 时可以找到想要的文件了
 16. grep 查找内容，有两种方式：`:vim :vimgrep` 是 vim 内置的 grep，而 `:grep` 是外置的 grep，基本语法与 `grep --help` 的语法一致，即 `grep /pattern/ filename`，这样会打开一个 quickfix 窗口，主要有有以下命令: `:copen :cclose :cnext :cprevious`
 17. vim 内置文件浏览器 netrw，主要有以下用法：`:Explore` 直接打开浏览器，`:Sexplore` 打开一个垂直窗口文件浏览器，`:Vexplore` 打开一个水平窗口文件浏览器；在 netrw 中有几个命令：`%` 创建新文件、`d` 创建新目录、`R` 重命名文件或目录、`D` 删除文件或目录
-18. 安装插件；
+18. fzf，一个通用的模糊匹配器，参照 diy/readme.md 安装插件，安装完成后输入 `:Files` 可以获取到该指令，以下是 fzf 的基础语法：
+    1. `^welcom` 前缀精确匹配，返回 *welcome*
+    2. `down$` 后缀精确匹配，返回 *markdown*
+    3. `'welcome to markdown` 表示整句精确匹配，返回 *welcome to markdown*
+    4. `welcome | markdown` 表示 或 语法，尽可能返回 welcome 和 markdown
+    5. `welcome !markdown` 表示 非 语法，返回不含 markdown 的 *welcome xxx* 短语
+19. 搭配以上插件进行搜索并替换，`<leader>bd`（自定义的按键映射，原理是 `:bufdo bd |e#`）关闭所有 buffer，然后重新打开当前 buffer，`ctrl + f` 使用 fzf 的 <tab> 选择要打开的 buffer，然后 `:buffer %s/被替换/替换值/g | update` 一次性将所选的 buffer 中的指定值进行替换
+
+### chapter 4
+20. motion，vim 中的动作，有点反人类：
+    1. k，上
+    2. j，下
+    3. h，左
+    4. l，右
+        上下左右，科技含量，kjhl
+    5. w，下一个单词 word
+    6. }，下一个段落
+    7. $，行尾
+21. operator，操作符
+    1. y，yank 复制
+    2. p，paste 粘贴，`P` 大写的是光标前的，`p` 小写的是光标后的，这和许多操作符的前后逻辑类似
+    3. d，delete 删除
+    4. c，change 原意是修改文本，表现为删除选中文本，将其存入寄存器，后续可以用 `p` 粘贴
+22. 组合技，例如有
+    1. `y$` yank from current to $，即复制从光标当前位置（光标前）开始直到行尾到剪贴板
+    2. `dw` delete from current to next word，删除从当前位置开始到下一个 word
+    3. `c}` change text from current to next paragraph，修改从当前位置开始到下一个段落的文本
+    4. `y2h` yank 2 positions left from current，向左复制两个字符
+    5. `d2w` delete 2 words from current，向后复制两个单词
+    6. `c2j` change 2 lines，向下修改两行
+    7. `d5G` delete from current line to line 5，将从本行开始到第 5 行的内容全部删除，可以向上也可以向下
+    另外，重复 `dd`、`yy` 和 `cc` 分别代表 删除该行、复制该行、将该行剪切到寄存器并进入插入模式
+23. 文本对象操作：i 表示区域内部、a 表示整个区域，假设有以下代码块
+    ```javascript
+    const hello = function() {
+        console.log("Hello Vim");
+        return ture;
+    }
+    ```
+    将光标放在 Hello 的 H 处，`di(` 将自动定位 *"Hello Vim"* 然后将其 delete，如果是 `da(` 则删除整个 *("Hello Vim")*，同理还有 `di{` 删除整个 `{}` 里的内容，`diw` 删除 *Hello* 这个单词
+    假设又有以下代码块：
+    ```html
+    <div>
+        <h1>header1</h1>
+        <p> para1 </p>
+        <p> para2 </p>
+    </div>
+    ```
+    将光标放置于 header1 的 h，输入 `dit` 则删除整个 *header1*，输入 `dat` 删除 *\<h1>header1\</h1>*
+    将光标放置于 div 处，`dit` 将删除 *\<div>\</div>* 内所有的 h1 和 p，`dat` 将额外删除 div 整个模块，如果是 `di<` 则删除 *div* 这三个字符（和上文的 `di(` 逻辑类似）
+    输入 `:h text-object` 获取更多帮助，以下是常见的文本对象：`[w]ord`、`[p]aragraph`、`[s]entence`、`(`、`{`、`[`、`<`、`t` 代表 xml 标签、`"`、`'`
+24. vim motion 和 operator 与 unix 命令结合
+    假设有以下文本：
+    
+    ```
+    1234
+    abcd
+    Id|Name|Age
+    1|Alice|20
+    2|Bob|22
+    3|Caddy|19
+    23212421
+    asdasca
+    ```
+    将光标放在 Id 处，然后输入 `!}column -t -s "|"`：`!` 的作用可以理解为一个占位符，用于表示后面的指令；`}` 用于标识命令操作的对象范围，即到下一个段落；`column -t -s "|"` 是 unix 上的指令，用于通过 "|" 标识来将数据 table 化。以上指令就是相当于将 `!` 修改成 `column -t -s "|"`，然后作用范围是整个段落，结果如下：
+    ```
+    1234
+    abcd
+    Id      Name   Age
+    1       Alice  20
+    2       Bob    22
+    3       Caddy  19
+    23212421
+    asdasca
+    ```
+    像这样，通过 motion 和 operator 相结合：motion 到哪个位置，operator 做什么事，实现强大的文本编辑，更何况 `!` 允许调用更多的 unix 指令实现更好的文本处理。以下是引用原文：
+    
+    > 你知道的动词 **操作符**，名词 **动作**，终端命令越多，你组建复杂操作的能力成倍增长。
+    >
+    > 换句话说，假设你只知道四个 **动作**：`w, $, }, G` 和删除操作符 `d`，你可以做 8 件事：按四种方式移动 `w, $, }, G` 和删除 4 种文本对象 `dw, d$, d}, dG`；如果有一天你学习了小写变大写的 **操作符** `gU`，你的 Vim 工具箱中多的不是 1 种工具，而是4种：`gUw, gU$, gU}, gUG`，现在你的 Vim 工具箱中就有12种工具了；如果你知道 10 个 **动作** 和 5 个 **操作符**，那么你就有 60 种工具：50 个操作 + 10 个移动。另外，行号动作 `nG` 给你了 `n` 种 **动作**，其中 `n` 是你文件中的行数：例如前往第 5 行 `5G`。搜索动作 `/` 实际上给你带来无限数量的 **动作** 因为你可以搜索任何内容。你知道多少终端命令，外部命令操作符 `!` 就给你了多少种过滤工具。使用 Vim 这种能够组合的工具，所有你知道的东西都可以被串起来完成更复杂的操作。你知道的越多，你就越强大。
+    >
+    > 这种具有结合性的行为也正符合 Unix 的哲学：*一个命令做好一件事*。**动作** 只需要做一件事：前往 X。**操作符** 只需要做一件事：完成 Y。通过结合一个 **操作符** 和一个 **动作**，你就获得了 YX：在 X 上完成 Y。
