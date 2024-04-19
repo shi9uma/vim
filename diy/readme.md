@@ -118,9 +118,10 @@ E:/
 
      1.   vim 命令增强，模糊查找器，通过输入模糊的关键词就可以定位文件或文件夹，[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)，获取其 binary 文件放到 `E:/toolkit/fzf` 下
      2.   类 grep 工具，[BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep.git)，但不是插件，在 unix 下可以通过包管理器简易安装，在 windows 下通过 binary portable 使用，在 [release](https://github.com/BurntSushi/ripgrep/releases) 获取对应版本的 binary 文件，放到 `E:/toolkit/ripgrep` 文件夹，输入 `rg -h` 可以看到回显
-
+     3.   括号高亮工具，[frazrepo/vim-rainbow](https://github.com/frazrepo/vim-rainbow.git)，`Plug 'frazrepo/vim-rainbow'`
+     
      相关的 `$profile` 应该这么写：
-
+     
      ```powershell
      $FZFPATH = "E:/toolkit/fzf"
      $RIPGREPPATH = "E:/toolkit/ripgrep"
@@ -129,13 +130,14 @@ E:/
      $env:FZF_DEFAULT_COMMAND = "rg --files"
      $env:FZF_DEFAULT_OPTS = "-m --height 40% --reverse --border --ansi"
      ```
-
+     
      `E:/toolkit/vim/vimrc` 插件相关这么写：
-
+     
      ```bash
      call plug#begin('E:/toolkit/vim/plugins')
      Plug 'junegunn/fzf.vim'	" 这个是联动 vim 和 fzf 的插件
      Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+     Plug 'frazrepo/vim-rainbow'	" 括号高亮
      call plug#end()
      ```
 

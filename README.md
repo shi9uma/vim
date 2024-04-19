@@ -9,5 +9,5 @@
 -   增强
     -   插件参考：[7款优秀Vim插件帮你打造完美IDE](https://www.jiqizhixin.com/articles/2020-06-05-4)
     -   配色方案：[morhetz/gruvbox](https://github.com/morhetz/gruvbox.git)
-    -   文本搜索工具：[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)
-    -   
+    -   搜索工具：[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)
+    -   括号高亮：[frazrepo/vim-rainbow](https://github.com/frazrepo/vim-rainbow.git)
