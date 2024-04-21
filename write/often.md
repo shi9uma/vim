@@ -36,6 +36,8 @@ motions and operators，科技含量，kjhl，上下左右，`$ } w e b`
     14. 使用 `H`、`M`、`L` 分别跳转到当前窗口的顶部、中间、底部
     15. 知道文章大概在 70% 的位置，使用 `70%` 可以直接跳转
     16. `dta` delete to letter a，从当前位置开始，直到 a 之前的字符全部删除
+    17. 例如使用 `/test` 匹配到 *test* 字符串，然后输入 `cwhello<esc>` 这一句是将 test 修改成 hello，然后退出插入模式，随后输入 `n` 进行下一个匹配，`.` 会自动重复 `cwhello<esc>` 的行为；像这样通过 `n.n.n.` 的方式即可实现 vscode 下的 `ctrl + h` 逐个替换
+    18. 
 
 netrw
     1. `:Explore` 打开文件浏览器，`:sexplore` 垂直、`:vexplore` 水平，

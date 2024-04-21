@@ -172,3 +172,17 @@
     3. `ctrl + o dta yta` 从当前位置开始直到 a 全部删除、复制
 
 ### chapter 7
+39. 点命令，重复上一个修改 buffer 的操作
+    1. 例如使用 `/test` 匹配到 *test* 字符串，然后输入 `cwhello<esc>` 这一句是将 test 修改成 hello，然后退出插入模式，随后输入 `n` 进行下一个匹配，`.` 会自动重复 `cwhello<esc>` 的行为；像这样通过 `n.n.n.` 的方式即可实现 vscode 下的 `ctrl + h` 逐个替换；当然还有一条指令：`cgnhello<esc>` 用于快速、可视化地进行替换，并且不再需要按 `n`，而是自动地跳转到下一个 `test`
+    2. 例如有以下代码块：
+    ```
+    zlet zzone = '1';
+    zlet zztwo = '2';
+    zlet zzthree = '3';
+    zlet zzfour = '4';
+    ```
+    光标放在第一个 z 上，输入 `ctrl + v3jd`，会将开头的 z 全部删除，然后按下 `w` 会跳转到第 6 列，此时再 `.` 即可自动重复 `ctrl + v3jd`，最终只需要输入 `ctrl + v3jdw.w.` 即可实现
+
+### chapter 8
+40. 接 36，继续描述寄存器模式
+    1. 
