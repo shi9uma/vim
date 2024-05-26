@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
-dirs=(
-    $HOME/.vim $HOME/.vim/tmp $HOME/.vim/autoload $HOME/.vim/plugins
-)
+vim_root=/usr/share/vim
+vim_version_dir_name=$(ls $vim_root | grep '^vim[0-9]\{2\}$')
+vim_dir=$vim_root/$vim_version_dir_name
 
-for dir in ${dirs[@]}; do
-    if [ ! -d $dir ]; then
-        mkdir -p $dir
-    fi
-done
+local_vim_root=$HOME/.vim
+local_vim_root_ln_share=local_vim_root/share
 
-mkdir $HOME/.vim/share/
-ln -s /usr/share/vim/* $HOME/.vim/share/
-if [ -d $HOME/.vim/colors ]; then
-    rm -rf $HOME/.vim/colors
-    ln -s $(find /usr/share/vim/ -name colors) $HOME/.vim/colors
+if [ ! -d $local_vim_root ]; then
+    mkdir $local_vim_root
 fi
 
+mkdir $local_vim_root_ln_share
+ln -s $vim_root $local_vim_root_ln_share
+ln -s $vim_dir/autoload $local_vim_root/autoload
+ln -s $vim_dir/colors $local_vim_root/colors
+
+sudo chown -R $USER:$USER $HOME/.vim
 
 curl \
     -fLo ~/.vimrc \
@@ -42,5 +42,4 @@ curl \
     --create-dirs \
     https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim
 
-sudo chown -R $USER:$USER $HOME/.vim
 vim -c PlugInstall
