@@ -15,6 +15,9 @@ mkdir $local_vim_root_ln_share
 ln -s $vim_root $local_vim_root_ln_share
 ln -s $vim_dir/autoload $local_vim_root/autoload
 ln -s $vim_dir/colors $local_vim_root/colors
+ln -s $vim_dir/plugin $local_vim_root/plugin
+
+mkdir -p $HOME/.vim/tmp
 
 sudo chown -R $USER:$USER $HOME/.vim
 

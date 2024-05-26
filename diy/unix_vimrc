@@ -87,7 +87,7 @@ colorscheme gruvbox
 " let mapleader = ","
 
 " 03. plugins
-call plug#begin('~/.vim/plugins')
+call plug#begin('~/.vim/plugin')
 Plug 'junegunn/fzf.vim'	" fzf 联动
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}	" fzf core
 Plug 'frazrepo/vim-rainbow'	" 括号高亮
