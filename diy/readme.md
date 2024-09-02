@@ -4,12 +4,12 @@
 
 在 windows powershell in terminal 下 portable 使用 vim、gvim 为目的，并集成插件
 
-1.   获取 [vim](https://www.vim.org/download.php) 的 portable 文件，解压到 `E:/toolkit/vim` 目录下备用，后文给出项目具体目录拓扑
+1.   获取 [vim](https://www.vim.org/download.php) 的 portable 文件，解压到 `d:/bin/vim` 目录下备用，后文给出项目具体目录拓扑
 
 2.   将 vim 的 binary 路径添加到 powershell 的配置文件 `$profile` 中，参考如下：
 
      ```powershell
-     $VIMPATH = "E:/toolkit/vim/vim90"
+     $VIMPATH = "d:/bin/vim/vim90"
      
      $env:PATH += ";$VIMPATH"
      ```
@@ -28,7 +28,7 @@
                  defaults 文件: "$VIMRUNTIME/defaults.vim"
           ```
 
-     2.   创建通用配置文件：`touch E:/toolkit/vim/vimrc`，添加以下内容：
+     2.   创建通用配置文件：`touch d:/bin/vim/vimrc`，添加以下内容：
 
           ```ini
           ...
@@ -36,13 +36,13 @@
           set encoding=UTF-8
           
           " 修改 windows 下备份、撤销、临时文件的目录
-          set backupdir=E:/toolkit/vim/tmp
-          set undodir=E:/toolkit/vim/tmp
-          set directory=E:/toolkit/vim/tmp
+          set backupdir=d:/bin/vim/tmp
+          set undodir=d:/bin/vim/tmp
+          set directory=d:/bin/vim/tmp
           
-          let $configs_dir = "E:/toolkit/vim/configs"
-          let $vim_base_dir = "E:/toolkit/vim"
-          let $vim_runtime_dir = "E:/toolkit/vim/vim90"
+          let $configs_dir = "d:/bin/vim/configs"
+          let $vim_base_dir = "d:/bin/vim"
+          let $vim_runtime_dir = "d:/bin/vim/vim90"
           
           let $VIM = $vim_base_dir
           let $HOME = $configs_dir
@@ -51,28 +51,28 @@
           ...
           ```
 
-          1.   viminfo，\_viminfo 是单个用户启动时的操作备份，记录每个文件打了什么指令，将其全部修改成 `E:/toolkit/vim/configs/_viminfo`；`$home`，这个就是 unix 每个用户的 `~` 目录，在 windows 下对应 `C:/User/user/`，由于其影响到生成 viminfo、\_viminfo 的路径，因此需要将其在 vim 中修改而又不影响到系统变量
-          2.   `$vim`，即 `E:/toolkit/vim`
-          3.   `$vimrc`，vim 启动时读取的 rc 文件，即 `E:/toolkit/vim/configs/_vimrc`，这里强制指定 user 和 admin 都使用同一个 _vimrc 文件
-          4.   `$myvimrc`，单个用户对应的 rc 文件，也改成 `E:/toolkit/vim/configs/_vimrc`
-          5.   `$VIMRUNTIME`，就是 vim binary 所在的目录，即 `E:/toolkit/vim/vim90`
+          1.   viminfo，\_viminfo 是单个用户启动时的操作备份，记录每个文件打了什么指令，将其全部修改成 `d:/bin/vim/configs/_viminfo`；`$home`，这个就是 unix 每个用户的 `~` 目录，在 windows 下对应 `C:/User/user/`，由于其影响到生成 viminfo、\_viminfo 的路径，因此需要将其在 vim 中修改而又不影响到系统变量
+          2.   `$vim`，即 `d:/bin/vim`
+          3.   `$vimrc`，vim 启动时读取的 rc 文件，即 `d:/bin/vim/configs/_vimrc`，这里强制指定 user 和 admin 都使用同一个 _vimrc 文件
+          4.   `$myvimrc`，单个用户对应的 rc 文件，也改成 `d:/bin/vim/configs/_vimrc`
+          5.   `$VIMRUNTIME`，就是 vim binary 所在的目录，即 `d:/bin/vim/vim90`
 
-4.   顺便修改一下 git 默认的 vim 路径，否则又跑去 `$HOME` 生成文件了：`$env:GIT_EDITOR = "E:/toolkit/vim/vim90/vim.exe"`
+4.   顺便修改一下 git 默认的 vim 路径，否则又跑去 `$HOME` 生成文件了：`$env:GIT_EDITOR = "d:/bin/vim/vim90/vim.exe"`
 
-5.   vim 增强套件，适用于 windows 下的 `E:/toolkit/vim/vim90`
+5.   vim 增强套件，适用于 windows 下的 `d:/bin/vim/vim90`
 
      1.   配色，参考于 [morhetz/gruvbox](https://github.com/morhetz/gruvbox.git)
 
-          1.   `curl -o E:/toolkit/vim/vim90/colors/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
-          2.   `curl -o E:/toolkit/vim/vim90/autoload/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
-          3.   `curl -o E:/toolkit/vim/vim90/autoload/airline/themes/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim`
-          4.   `curl -o E:/toolkit/vim/vim90/autoload/lightline/colorscheme/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim`
+          1.   `curl -o d:/bin/vim/vim90/colors/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+          2.   `curl -o d:/bin/vim/vim90/autoload/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/gruvbox.vim`
+          3.   `curl -o d:/bin/vim/vim90/autoload/airline/themes/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/airline/themes/gruvbox.vim`
+          4.   `curl -o d:/bin/vim/vim90/autoload/lightline/colorscheme/gruvbox.vim https://raw.githubusercontent.com/morhetz/gruvbox/master/autoload/lightline/colorscheme/gruvbox.vim`
 
-     2.   vim 插件管理工具，[junegunn/vim-plug](https://github.com/junegunn/vim-plug.git)：`curl -fLo E:/toolkit/vim/vim90/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`，然后打开将以下基本语句写入到 `E:/toolkit/vim/vimrc` 末尾（参考）：
+     2.   vim 插件管理工具，[junegunn/vim-plug](https://github.com/junegunn/vim-plug.git)：`curl -fLo d:/bin/vim/vim90/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`，然后打开将以下基本语句写入到 `d:/bin/vim/vimrc` 末尾（参考）：
 
           ```bash
           " 开始声明
-          call plug#begin('E:/toolkit/vim/plugins/')	" 指定插件安装目录
+          call plug#begin('d:/bin/vim/plugins/')	" 指定插件安装目录
           
           " 开始获取插件
           Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
@@ -85,32 +85,32 @@
 
      3.   完成 2 后，安装以下插件：
 
-          1.   vim 命令增强，模糊查找器，通过输入模糊的关键词就可以定位文件或文件夹，[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)，获取其 binary 文件放到 `E:/toolkit/fzf` 下
-          2.   类 grep 工具，[BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep.git)，但不是插件，在 unix 下可以通过包管理器简易安装，在 windows 下通过 binary portable 使用，在 [release](https://github.com/BurntSushi/ripgrep/releases) 获取对应版本的 binary 文件，放到 `E:/toolkit/ripgrep` 文件夹，输入 `rg -h` 可以看到回显
+          1.   vim 命令增强，模糊查找器，通过输入模糊的关键词就可以定位文件或文件夹，[junegunn/fzf.vim](https://github.com/junegunn/fzf.vim.git)，获取其 binary 文件放到 `d:/bin/fzf` 下
+          2.   类 grep 工具，[BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep.git)，但不是插件，在 unix 下可以通过包管理器简易安装，在 windows 下通过 binary portable 使用，在 [release](https://github.com/BurntSushi/ripgrep/releases) 获取对应版本的 binary 文件，放到 `d:/bin/ripgrep` 文件夹，输入 `rg -h` 可以看到回显
           3.   括号高亮工具，[frazrepo/vim-rainbow](https://github.com/frazrepo/vim-rainbow.git)，`Plug 'frazrepo/vim-rainbow'`
 
           相关的 `$profile` 应该这么写：
 
           ```powershell
-          $FZFPATH = "E:/toolkit/fzf"
-          $RIPGREPPATH = "E:/toolkit/ripgrep"
+          $FZFPATH = "d:/bin/fzf"
+          $RIPGREPPATH = "d:/bin/ripgrep"
           
           $env:PATH += ";$FZFPATH;$RIPGREPPATH"
           $env:FZF_DEFAULT_COMMAND = "rg --files"
           $env:FZF_DEFAULT_OPTS = "-m --height 40% --reverse --border --ansi"
           ```
 
-          `E:/toolkit/vim/vimrc` 插件相关这么写：
+          `d:/bin/vim/vimrc` 插件相关这么写：
 
           ```bash
-          call plug#begin('E:/toolkit/vim/plugins')
+          call plug#begin('d:/bin/vim/plugins')
           Plug 'junegunn/fzf.vim'	" 这个是联动 vim 和 fzf 的插件
           Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
           Plug 'frazrepo/vim-rainbow'	" 括号高亮
           call plug#end()
           ```
 
-6.   快速配置：`curl -fLo E:/toolkit/vim/vimrc https://raw.githubusercontent.com/shi9uma/vim/main/diy/windows_vimrc`
+6.   快速配置：`curl -fLo d:/bin/vim/vimrc https://raw.githubusercontent.com/shi9uma/vim/main/diy/windows_vimrc`
 
 ## unix
 
