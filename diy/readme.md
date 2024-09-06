@@ -10,10 +10,9 @@
 
      ```powershell
      $VIMPATH = "d:/bin/vim/vim90"
-     
      $env:PATH += ";$VIMPATH"
      ```
-
+     
 3.   配置 vim 的几个路径，这里是根据传统单个 windows 下只有 user 和 administrator 两个账户来配置，也就是说默认这台 pc 只有你自己用，如果是多账户模式，那就默认配置吧，多账户电脑建议用 unix
 
      1.   首先查看 vim 的配置文件目录 `vim --version`，可以得到以下输出：
@@ -110,12 +109,19 @@
           call plug#end()
           ```
 
-6.   快速配置：`curl -fLo d:/bin/vim/vimrc https://raw.githubusercontent.com/shi9uma/vim/main/diy/windows_vimrc`
+6.   快速配置：`curl -fLo d:/bin/vim/vimrc https://raw.githubusercontent.com/shi9uma/vim/main/diy/windows-vimrc`
 
 ## unix
 
-1.   `sudo aptitude install vim fzf ripgrep`
-2.   `curl -fLo /tmp/unix_install_vim.sh https://raw.githubusercontent.com/shi9uma/vim/main/diy/unix_install_vim.sh && chmod +x /tmp/unix_install_vim.sh; /tmp/unix_install_vim.sh`
+```shell
+#/usr/bin/env zsh
+
+sudo apt install vim fzf ripgrep
+
+curl -fLo /tmp/unix-install-vim.sh https://raw.githubusercontent.com/shi9uma/vim/main/diy/unix-install-vim.sh
+chmod +x /tmp/unix-install-vim.sh
+/tmp/unix-install-vim.sh
+```
 
 ## references
 
