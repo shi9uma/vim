@@ -21,6 +21,22 @@ behave mswin
 winpos 50 50	" 启动位置
 set lines=40 columns=210	" 启动大小
 
+" Set cursor shape and color
+if &term =~ "xterm"
+    " INSERT mode
+    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;blue\x7"
+    " REPLACE mode
+    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;black\x7"
+    " NORMAL mode
+    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
+endif
+" 1 -> blinking block  闪烁的方块
+" 2 -> solid block  不闪烁的方块
+" 3 -> blinking underscore  闪烁的下划线
+" 4 -> solid underscore  不闪烁的下划线
+" 5 -> blinking vertical bar  闪烁的竖线
+" 6 -> solid vertical bar  不闪烁的竖线
+
 set encoding=UTF-8	" Encoding
 set nocompatible	" Don't try to be vi compatible
 filetype off	" Helps force plugins to load correctly when it is turned back on below
